@@ -6,32 +6,34 @@ def palindrome(goiOut):
     return goiOut[0] == goiOut[-1] and palindrome(goiOut[1:-1])
 
 
-goiIn = input('Enter word:')
 
 
-kekka = "is" if palindrome(goiIn) else "IS NOT"
-print ("{0} {1} a palindrome.".format(goiIn, kekka))
+def substrings(goiIn):
+
+    subPalindromes = []
+
+    for iM in range(0,len(goiIn)):
+        for iS in range(len(goiIn),iM, -1):
+            if len(goiIn[iM:iS]) > 1 and len(goiIn[iM:iS]) != len(goiIn):
+                if palindrome(goiIn[iM:iS]): 
+                    subPalindromes.append(goiIn[0:iM] + "[" + goiIn[iM:iS] + "]" + goiIn[iS:len(goiIn)])
+                    
+    if subPalindromes:
+        print ("\n\n\n:>Other palyndromes found in your input:")
+        for i in subPalindromes:
+            print ("::> %s" % i)
 
 
 
-subPalindromes = []
 
-for iM in range(1,len(goiIn)):
-    if (len(goiIn)-iM) <= 1:
-        break
-
-    if palindrome(goiIn[0:len(goiIn)-iM]):
-        subPalindromes.append("[" + goiIn[0:len(goiIn)-iM] + "]" + goiIn[len(goiIn)-iM:len(goiIn)])
-        
-    if palindrome(goiIn[iM:len(goiIn)]):
-        subPalindromes.append(goiIn[0:iM] + "[" + goiIn[iM:len(goiIn)] + "]")
-
-    subTemp = goiIn[iM:len(goiIn)-iM]
-    if len(subTemp) > 1 and palindrome(subTemp):
-        subPalindromes.append(goiIn[0:iM] + "[" + subTemp + "]" + goiIn[len(goiIn)-iM:len(goiIn)])
+def main():
+    goi = input('Enter word:')
+    kekka = "is" if palindrome(goi) else "IS NOT"
+    print ("\n\n\n{0} {1} a palindrome.".format(goi, kekka))
 
 
-if subPalindromes:
-    print ("Other palyndromes found in your input:")
-    for i in subPalindromes:
-        print (": %s" % i)
+    substrings(goi)
+
+
+
+main()
