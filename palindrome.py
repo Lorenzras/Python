@@ -16,10 +16,10 @@ def substrings(goiIn):
         for iS in range(len(goiIn),iM, -1):
             if len(goiIn[iM:iS]) > 1 and len(goiIn[iM:iS]) != len(goiIn):
                 if palindrome(goiIn[iM:iS]): 
-                    subPalindromes.append(goiIn[0:iM] + "[" + goiIn[iM:iS] + "]" + goiIn[iS:len(goiIn)])
+                    subPalindromes.append(goiIn[0:iM] + " [" + goiIn[iM:iS] + "] " + goiIn[iS:len(goiIn)])
                     
     if subPalindromes:
-        print ("\n\n\n:>Other palyndromes found in your input:")
+        print ("\n\n\n:>Other palyndromes found in your input:" + str(len(subPalindromes)))
         for i in subPalindromes:
             print ("::> %s" % i)
 
